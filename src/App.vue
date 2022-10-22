@@ -1,17 +1,29 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+  <HeaderContent />
+    <div id="app">
+
+      <router-view/>
+
+    </div>
   </div>
 </template>
 
+
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// Импорт "Шапки"
+import HeaderContent from './components/HeaderContent.vue'
+
+// Импорт стилей из Бутстрап-Вью
+import 'bootstrap-vue/node_modules/bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    HeaderContent,
   }
 }
 </script>
@@ -23,6 +35,28 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  /* color: #42b983; */
+  color: inherit;
+}
+
+/* Свалка
+<nav>
+  <router-link to="/">Home</router-link> |
+  <router-link to="/about">About</router-link>
+</nav>
+*/
+
 </style>
+
