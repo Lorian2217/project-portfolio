@@ -12,11 +12,7 @@
 
             <b-nav-item :to="{ name: 'second' }">Link</b-nav-item>
             <b-nav-item href="#" disabled>Disabled</b-nav-item>
-            <b-nav-item-dropdown text="Личный кабинет" right>
-                <b-dropdown-item :to="{ name: 'home' }">Авторизация</b-dropdown-item>
-                <b-dropdown-item :to="{ name: 'home' }">Регистрация</b-dropdown-item>
-                <b-dropdown-item :to="{ name: 'home' }">Выход</b-dropdown-item>
-            </b-nav-item-dropdown>
+            <b-nav-item :to="{ name: 'listing' }">List</b-nav-item>
 
           </b-navbar-nav>
 
@@ -28,7 +24,7 @@
                 <em>Личный кабинет</em>
               </template>
               <b-dropdown-item :to="{ name: 'home' }">Profile</b-dropdown-item>
-              <b-dropdown-item :to="{ name: 'home' }">Auth</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'authorization' }">Auth</b-dropdown-item>
               <b-dropdown-item :to="{ name: 'home' }">Registr</b-dropdown-item>
             </b-nav-item-dropdown>
 
@@ -39,8 +35,6 @@
     <!-- Конец вёрстки, ниже изменять ничего нельзя -->
   </div>
 </template>
-
-
 
 
 
