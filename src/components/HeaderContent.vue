@@ -12,7 +12,8 @@
 
             <b-nav-item :to="{ name: 'second' }">Link</b-nav-item>
             <b-nav-item href="#" disabled>Disabled</b-nav-item>
-            <b-nav-item :to="{ name: 'listing' }">List</b-nav-item>
+            <b-nav-item :to="{ name: 'listing' }">Студенты</b-nav-item>
+            <b-nav-item :to="{ name: 'spisok' }">Студенты ver.2</b-nav-item>
 
           </b-navbar-nav>
 

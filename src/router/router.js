@@ -4,6 +4,8 @@ import HomeView from '../views/HomeView.vue'
 import pMain from '../components/ExampleMain.vue'
 import pStudent from '../components/Listing.vue'
 import pAuth from '../components/Authorization.vue'
+import pSpisok from '../components/spisok.vue'
+import exFooter from '../components/FooterContent.vue'
 
 Vue.use(VueRouter)
 
@@ -22,6 +24,16 @@ const routes = [
     path: '/student',
     name: 'listing',
     component: pStudent
+  },
+  {
+    path: '/spisok',
+    name: 'spisok',
+    component: pSpisok
+  },
+  {
+    path: '/downPlace',
+    name: 'downPlace',
+    component: exFooter
   },
   {
     path: '/about',
