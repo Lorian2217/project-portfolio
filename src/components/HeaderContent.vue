@@ -12,8 +12,7 @@
 
             <b-nav-item :to="{ name: 'second' }">Link</b-nav-item>
             <b-nav-item href="#" disabled>Disabled</b-nav-item>
-            <b-nav-item :to="{ name: 'listing' }">Студенты</b-nav-item>
-            <b-nav-item :to="{ name: 'spisok' }">Студенты ver.2</b-nav-item>
+            <b-nav-item :to="{ name: 'spisok' }">Студенты</b-nav-item>
 
           </b-navbar-nav>
 
@@ -24,9 +23,14 @@
               <template #button-content>
                 <em>Личный кабинет</em>
               </template>
-              <b-dropdown-item :to="{ name: 'home' }">Profile</b-dropdown-item>
-              <b-dropdown-item :to="{ name: 'authorization' }">Auth</b-dropdown-item>
-              <b-dropdown-item :to="{ name: 'home' }">Registr</b-dropdown-item>
+              <span v-if="isLoggedIn">
+                  <b-dropdown-item :to="{ name: 'personal-cabinet' }">Profile</b-dropdown-item>
+                  <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
+              </span>
+              <span v-else>
+                  <b-dropdown-item :to="{ name: 'authorization' }">Auth</b-dropdown-item>
+                  <b-dropdown-item :to="{ name: 'home' }">Registr</b-dropdown-item>
+              </span>
             </b-nav-item-dropdown>
 
           </b-navbar-nav>
@@ -50,7 +54,14 @@ import { BNavbar, BCollapse, BNavbarNav, BNavItem, BNavbarToggle, BNavItemDropdo
 export default{
   name: "HeaderContent",
   components: { BNavbar, BCollapse, BNavbarNav, BNavItem, BNavbarToggle, BNavItemDropdown, BDropdownItem, BNavbarBrand },
+  computed: {
+    isLoggedIn : function(){ return this.$store.getters.isAuthenticated}
+  },
   methods:{
+    async logout(){
+        await this.$store.dispatch('LogOut')
+        this.$router.push('/')
+      }
   }
 }
 

@@ -3,7 +3,8 @@
     <!-- Начало вёрстки, выше изменять ничего нельзя -->
     <div class="area_working">
         <div class="workzone">
-          <h1>Sign In</h1>
+          <h2>Вход для преподавателей</h2>
+          <!-- Это страница для преподавателей -->
 
           <b-form>
 
@@ -13,7 +14,7 @@
             <b-form-input
               id="input-horizontal"
               placeholder="Введите логин"
-              v-model="logIn"
+              v-model="form.logIn"
               :state="validation"
               required
               ></b-form-input>
@@ -33,7 +34,7 @@
             <b-form-input
               id="input-horizontal"
               placeholder="Введите пароль"
-              v-model="password"
+              v-model="form.password"
               :state="pasValid"
               required
               ></b-form-input>
@@ -48,7 +49,7 @@
           </b-form-group>
           <b-button block @click="submit">Войти</b-button>
             <p class="forgot_password text-right">
-              <router-link to="#">Forgot password?</router-link>
+              <router-link to="#">Вход для студентов</router-link>
             </p>
           <div class="social-icons">
             <router-link to="#"><b-icon icon="google" style="color: #7952b3;"></b-icon></router-link>
@@ -65,7 +66,7 @@
 </template>
 
 <script>
-
+import { mapActions } from "vuex";
 import { BForm, BFormInput, BFormGroup, BButton, BIcon, BFormInvalidFeedback, BFormValidFeedback } from 'bootstrap-vue'
 
 export default{
@@ -73,25 +74,36 @@ export default{
   components: { BForm, BFormInput, BFormGroup, BButton, BIcon, BFormInvalidFeedback, BFormValidFeedback },
   data(){
     return{
-      logIn: null,
-      password: null
+      form: {
+        logIn: null,
+        password: null
+      }
     }
   },
   methods:{
+    ...mapActions(["LogIn"]),
     async submit() {
+      const User = new FormData();
+                User.append('login', this.form.logIn);
+                User.append('password', this.form.password);
       try {
-        alert("Данные отправлены");
+        let test = await this.LogIn(User);
+                if (test.data.success) {
+                    this.$router.push('/personal-cabinet');
+                } else {
+                    console.log("No");
+                }
       } catch(error) {
-        alert("Данные не отправлены" + error);
+          console.log(error);
       }
     },
   },
   computed: {
     validation() {
-      return this.logIn !== null && this.logIn.length > 0
+      return this.form.logIn !== null && this.form.logIn.length > 1
     },
     pasValid() {
-      return this.password !== null && this.password.length > 0
+      return this.form.password !== null && this.form.password.length > 1
     }
   }
 }
