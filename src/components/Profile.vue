@@ -4,7 +4,11 @@
     <div class="area_working">
       <div class="avatar">
         <b-avatar square size="200px"></b-avatar>
-        <h2>Добро пожаловать, {{ User }}</h2>
+          <div class="regalis">
+            <h4>Добро пожаловать, {{ User }}</h4>
+            <h4>Должность: Старший преподаватель</h4>
+            <h4>Квалификация: Учитель математики и информатики</h4>
+          </div>
       </div>
       <div class="studentList">
 
@@ -77,13 +81,18 @@ export default{
 <style scoped>
 .avatar{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: left;
   text-align: left;
   width: 90%;
   height: auto;
   margin: 2% auto;
   padding: 20px;
+  border: solid black;
+}
+.regalis{
+  width: 100%;
+  padding: 10px;
   border: solid black;
 }
 .studentList{
@@ -93,5 +102,22 @@ export default{
   padding: 10px;
   text-align: left !important;
   border: solid black;
+}
+@media screen and (max-width: 400px) {
+  .avatar{
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+  }
+  .regalis{
+    border: none;
+    font-size: 1.5rem;
+    padding: 0;
+  }
+  .studentList{
+    width: 100%;
+    border: none;
+  }
 }
 </style>
