@@ -45,7 +45,7 @@
 
         </div>
       </div>
-<p>
+<!-- <p>
     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta necessitatibus similique magni perspiciatis minus voluptatum placeat doloribus assumenda quae culpa excepturi aspernatur ab molestiae a, dolorum adipisci fugiat aperiam laborum.
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
@@ -65,7 +65,7 @@
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-</p>
+</p> -->
     <!-- Конец вёрстки, ниже изменять ничего нельзя -->
   </div>
 </template>

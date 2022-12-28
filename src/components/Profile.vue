@@ -26,11 +26,11 @@
           :per-page="perPage"
           :current-page="currentPage"
           >
-            <template #cell(Портфолио)="row">
+            <!-- <template #cell(Портфолио)="row">
               <b-button size="sm" class="mr-1" @click="haunt(row.item)">
                 {{ row.detailsShowing ? 'Hide' : 'Портфолио' }}
               </b-button>
-            </template>
+            </template> -->
 
         </b-table>
 
@@ -79,6 +79,9 @@ export default{
 </script>
 
 <style scoped>
+.area_working{
+  width: 100%;
+}
 .avatar{
   display: flex;
   flex-direction: row;

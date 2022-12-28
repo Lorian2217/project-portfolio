@@ -3,9 +3,8 @@ import VueRouter from 'vue-router'
 import store from '../store'
 import HomeView from '../views/HomeView.vue'
 import pMain from '../components/ExampleMain.vue'
-import pAuth from '../components/Authorization.vue'
+import pAuth from '../components/Authorization copy.vue'
 import pSpisok from '../components/spisok.vue'
-import exFooter from '../components/FooterContent.vue'
 import sProfile from '../components/Profile.vue'
 
 Vue.use(VueRouter)
@@ -26,11 +25,6 @@ const routes = [
     name: 'spisok',
     component: pSpisok,
     meta: {requiresAuth: true},
-  },
-  {
-    path: '/downPlace',
-    name: 'downPlace',
-    component: exFooter
   },
   {
     path: '/personal-cabinet',

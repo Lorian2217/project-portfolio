@@ -2,7 +2,6 @@
   <div>
   <HeaderContent />
     <div id="app">
-
       <router-view></router-view>
     </div>
   </div>
@@ -34,9 +33,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100vh;
+  border: solid black;
 }
 
-nav {
+/* nav {
   padding: 30px;
 }
 
@@ -46,9 +47,8 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  /* color: #42b983; */
-  color: inherit;
-}
+  color: #42b983;
+} */
 
 /* Свалка
 <nav>
