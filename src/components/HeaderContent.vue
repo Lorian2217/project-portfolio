@@ -12,7 +12,9 @@
 
             <b-nav-item :to="{ name: 'second' }">Link</b-nav-item>
             <b-nav-item href="#" disabled>Disabled</b-nav-item>
-            <b-nav-item :to="{ name: 'spisok' }">Студенты</b-nav-item>
+              <span v-if="isTeacher">
+                <b-nav-item :to="{ name: 'spisok' }">Студенты</b-nav-item>
+              </span>
 
           </b-navbar-nav>
 
@@ -55,7 +57,8 @@ export default{
   name: "HeaderContent",
   components: { BNavbar, BCollapse, BNavbarNav, BNavItem, BNavbarToggle, BNavItemDropdown, BDropdownItem, BNavbarBrand },
   computed: {
-    isLoggedIn : function(){ return this.$store.getters.isAuthenticated}
+    isLoggedIn : function(){ return this.$store.getters.isAuthenticated},
+    isTeacher : function(){ return this.$store.getters.isTeacher }
   },
   methods:{
     async logout(){

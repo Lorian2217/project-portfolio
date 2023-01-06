@@ -51,6 +51,11 @@
             <p class="forgot_password text-right">
               <router-link to="#">Вход для студентов</router-link>
             </p>
+          <div class="social-icons">
+            <router-link to="#"><b-icon icon="google" style="color: #7952b3;"></b-icon></router-link>
+            <router-link to="#"><b-icon icon="facebook" style="color: #7952b3;"></b-icon></router-link>
+            <router-link to="#"><b-icon icon="twitter" style="color: #7952b3;"></b-icon></router-link>
+          </div>
 
           </b-form>
 
@@ -62,11 +67,11 @@
 
 <script>
 import { mapActions } from "vuex";
-import { BForm, BFormInput, BFormGroup, BButton, BFormInvalidFeedback, BFormValidFeedback } from 'bootstrap-vue'
+import { BForm, BFormInput, BFormGroup, BButton, BIcon, BFormInvalidFeedback, BFormValidFeedback } from 'bootstrap-vue'
 
 export default{
   name: "authorization-page",
-  components: { BForm, BFormInput, BFormGroup, BButton, BFormInvalidFeedback, BFormValidFeedback },
+  components: { BForm, BFormInput, BFormGroup, BButton, BIcon, BFormInvalidFeedback, BFormValidFeedback },
   data(){
     return{
       form: {
@@ -106,17 +111,17 @@ export default{
 
 <style scoped>
 .area_working{
-  min-height: 100vh;
+  width: 100%;
   padding: 30px;
   background: #2554FF !important;
-  /* border: solid black; */
+  border: solid black;
 }
 
 .workzone{
   width: 450px;
   padding: 40px 55px 45px 55px;
   border-radius: 15px;
-  transition: all .3s;
+  /* transition: all .3s; */
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   /* margin-top: 5%; */
   margin-left: auto;
@@ -126,7 +131,7 @@ export default{
 }
 
 /* Раздел с иконками */
-.social-icons {
+/* .social-icons {
   text-align: center;
   font-family: "Open Sans";
   font-weight: 300;
@@ -148,18 +153,20 @@ export default{
   font-size: 1.4em;
   margin: 0 5px;
   text-decoration: none;
-}
+} */
 
 /* Выправка адаптивности */
 @media (min-width: 100px) and (max-width: 450px) {
   .area_working{
     padding: 0;
-    padding-top: 30px;
-    /* margin-top: 10%; */
+    /* margin: 0; */
+    margin-top: 10%;
   }
   .workzone{
-    width: auto;
+    width: 100%;
+    /* margin-top: 2%; */
     border-radius: 0;
+    /* border: 1px solid black; */
 }
   .social-icons{
     display: none;

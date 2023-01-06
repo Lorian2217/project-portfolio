@@ -4,13 +4,16 @@ const state = {
     user: null,
     token: null,
     image: null,
+    // Проверка на учителя
+    access: null,
 };
 const getters = {
     isAuthenticated: state => !!state.user,
-    // StatePost: state => state.email,
     StateUser: state => state.user,
     StateToken: state => state.token,
-    StateImg: state => state.image
+    StateImg: state => state.image,
+    // Раздел для проверки на учителя
+    isTeacher: state => !!state.access
 };
 const actions = {
 
@@ -31,8 +34,9 @@ const actions = {
         let response = await axios.post('http://localhost:8000/auth', User);
           if (response.data.success) {
             await commit('setUser', response.data.user.username)
-            await commit('setToken', response.data.user.api_token)
-            // await commit('setUpload', response.data.user.image)
+            await commit('setToken', response.data.user.Login)
+            await commit('setAccess', response.data.user.access)
+            await commit('setUpload', response.data.user.image)
           } else {
             console.log("Произошла некая ошибка");
           }
@@ -52,28 +56,31 @@ const actions = {
 
       async LogOut({ commit }){
         let user = null
-        commit('LogOut', user)
+        let access = null
+        commit('LogOut', user, access)
       },
-
-      async Example(){
-        // console.log(state.user)
-      }
 };
 const mutations = {
 
     setUser(state, username){
         state.user = username
     },
-    setToken(state, api_token){
-        state.token = api_token
+    setToken(state, login){
+        state.token = login
     },
     setUpload(state, image){
         state.image = image
     },
     LogOut(state){
         state.user = null,
-        state.image = null
+        state.image = null,
+        state.access = null
     },
+    // Проверка на учителя
+    setAccess(state, access){
+        state.access = access
+    },
+
 };
 export default {
   state,

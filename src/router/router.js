@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import store from '../store'
 import HomeView from '../views/HomeView.vue'
 import pMain from '../components/ExampleMain.vue'
-import pAuth from '../components/Authorization copy.vue'
+import pAuth from '../components/Authorization.vue'
 import pSpisok from '../components/spisok.vue'
 import sProfile from '../components/Profile.vue'
 
