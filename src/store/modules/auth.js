@@ -18,11 +18,12 @@ const getters = {
 const actions = {
 
       async Register({ commit }, UserForm) {
-        let example = await axios.post('http://localhost:8000/post', UserForm);
+        let example = await axios.post('http://localhost:8000/test', UserForm);
           if (example.data.success) {
             console.log("Всё успешно");
-            await commit('setUser', UserForm.get('username'))
-            await commit('setToken', example.data.user.api_token)
+            await commit('setUser', example.data.user)
+            await commit('setToken', example.data.user.Login)
+            await commit('setAccess', example.data.user.access)
             await commit('setUpload', example.data.user.image)
           } else {
             console.log("Произошла некая ошибка");
@@ -33,7 +34,7 @@ const actions = {
       async LogIn({ commit }, User) {
         let response = await axios.post('http://localhost:8000/auth', User);
           if (response.data.success) {
-            await commit('setUser', response.data.user.username)
+            await commit('setUser', response.data.user)
             await commit('setToken', response.data.user.Login)
             await commit('setAccess', response.data.user.access)
             await commit('setUpload', response.data.user.image)
@@ -62,8 +63,8 @@ const actions = {
 };
 const mutations = {
 
-    setUser(state, username){
-        state.user = username
+    setUser(state, user){
+        state.user = user
     },
     setToken(state, login){
         state.token = login
@@ -74,7 +75,8 @@ const mutations = {
     LogOut(state){
         state.user = null,
         state.image = null,
-        state.access = null
+        state.access = null,
+        state.token = null
     },
     // Проверка на учителя
     setAccess(state, access){

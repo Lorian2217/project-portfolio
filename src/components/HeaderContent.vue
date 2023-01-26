@@ -26,12 +26,12 @@
                 <em>Личный кабинет</em>
               </template>
               <span v-if="isLoggedIn">
-                  <b-dropdown-item :to="{ name: 'personal-cabinet' }">Profile</b-dropdown-item>
-                  <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
+                  <b-dropdown-item :to="{ name: 'personal-cabinet' }">Профиль</b-dropdown-item>
+                  <b-dropdown-item @click="logout">Выйти</b-dropdown-item>
               </span>
               <span v-else>
-                  <b-dropdown-item :to="{ name: 'authorization' }">Auth</b-dropdown-item>
-                  <b-dropdown-item :to="{ name: 'home' }">Registr</b-dropdown-item>
+                  <b-dropdown-item :to="{ name: 'authorization' }">Авторизация</b-dropdown-item>
+                  <b-dropdown-item :to="{ name: 'home' }">Регистрация</b-dropdown-item>
               </span>
             </b-nav-item-dropdown>
 
