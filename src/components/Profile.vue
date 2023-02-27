@@ -15,31 +15,36 @@
               <h4>Квалификация: {{ User.qualification }} </h4>
             </div>
       </div>
+      <span v-if="isTeacher">
+
+      </span>
+      <span v-else>
         <div class="studentList">
 
-          <b-pagination
-            v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage"
-            aria-controls="my-table"
-          ></b-pagination>
+            <b-pagination
+              v-model="currentPage"
+              :total-rows="rows"
+              :per-page="perPage"
+              aria-controls="my-table"
+            ></b-pagination>
 
-          <b-table
-            id="my-table"
-            :items="items"
-            :fields="fields"
-            :per-page="perPage"
-            :current-page="currentPage"
-            >
-              <!-- <template #cell(Портфолио)="row">
-                <b-button size="sm" class="mr-1" @click="haunt(row.item)">
-                  {{ row.detailsShowing ? 'Hide' : 'Портфолио' }}
-                </b-button>
-              </template> -->
+            <b-table
+              id="my-table"
+              :items="items"
+              :fields="fields"
+              :per-page="perPage"
+              :current-page="currentPage"
+              >
+                <!-- <template #cell(Портфолио)="row">
+                  <b-button size="sm" class="mr-1" @click="haunt(row.item)">
+                    {{ row.detailsShowing ? 'Hide' : 'Портфолио' }}
+                  </b-button>
+                </template> -->
 
-          </b-table>
+            </b-table>
 
-      </div>
+        </div>
+      </span>
     </div>
     <!-- Конец вёрстки, ниже ничего менять нельзя -->
   </div>
@@ -101,7 +106,8 @@ export default{
     rows() {
         return this.items.length
       },
-  ...mapGetters({ User: "StateUser", answer: "StateImg", token: "StateToken" })
+  ...mapGetters({ User: "StateUser", answer: "StateImg", token: "StateToken" }),
+    isTeacher : function(){ return this.$store.getters.isTeacher }
   }
 }
 </script>

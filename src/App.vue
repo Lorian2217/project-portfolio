@@ -34,7 +34,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   min-height: 100vh;
-  border: solid black;
+  /* border: solid black; */
 }
 
 /* nav {

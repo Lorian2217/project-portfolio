@@ -16,7 +16,7 @@
           <b-col lg="0"> <b-button variant="outline-primary" @click="search">Найти</b-button> </b-col>
           <b-col lg="1"> <b-button variant="outline-info" @click="reset">Сбросить</b-button> </b-col>
         </div>
-          Value: {{ text1 }} {{ student }} {{ group }} {{ cafedra }} {{ selected }}
+          Value: {{ student }} {{ group }} {{ cafedra }} {{ selected }}
     </div>
       <div class="workingpart">
         <div class="studentList">
@@ -80,7 +80,6 @@ export default{
   directives: { 'b-toggle': VBToggle },
   data(){
     return{
-      text1: '',
       student: null,
       group: null,
       cafedra: null,
@@ -110,7 +109,8 @@ export default{
   methods:{
     async search () {
       try{
-        alert("Вы нажали кнопку поиска");
+        const result = this.student + ' ' + this.group + ' ' + this.cafedra;
+        alert(result);
       } catch(error) {
         var a = this.errors = error.response.data;
         alert(a);
@@ -131,7 +131,7 @@ export default{
     },
     async haunt (item) {
       try{
-        this.selected = JSON.stringify(item.ФИО, null, 2)
+        this.selected = JSON.stringify(item.ФИО, null, 2);
       } catch(error) {
         this.errors = error.response.data;
         alert(this.errors);
