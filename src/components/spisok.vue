@@ -13,10 +13,10 @@
         <b-form-input id="input-horizontal" placeholder="Кафедра" v-model="cafedra"></b-form-input>
       </b-form-group>
         <div class="workzone_button">
-          <b-col lg="0"> <b-button variant="outline-primary" @click="search">Найти</b-button> </b-col>
+          <b-col lg="0"> <b-button variant="outline-primary" @click="sortCompare(student, items)">Найти</b-button> </b-col>
           <b-col lg="1"> <b-button variant="outline-info" @click="reset">Сбросить</b-button> </b-col>
         </div>
-          Value: {{ student }} {{ group }} {{ cafedra }} {{ selected }}
+          Value: {{ student | capitalize}} {{ group }} {{ cafedra }} {{ selected }}
     </div>
       <div class="workingpart">
         <div class="studentList">
@@ -29,6 +29,7 @@
           ></b-pagination>
 
           <b-table
+          responsive
           id="my-table"
           :items="items"
           :fields="fields"
@@ -86,7 +87,12 @@ export default{
       errors: null,
       perPage: 7,
       currentPage: 1,
-      fields: [ 'ФИО', 'Группа', 'Направление_подготовки', 'Портфолио' ],
+      fields: [
+        { key: 'ФИО', sortable: true },
+        { key: 'Группа', sortable: true },
+        { key: 'Направление_подготовки', sortable: true },
+        { key: 'Портфолио', sortable: true },
+      ],
       items: [
         { ФИО: "Новичков Максим", Группа: "МИ-101", Направление_подготовки: "Направление подготовки студента" },
         { ФИО: "Святов Димитрий", Группа: "МИ-101", Направление_подготовки: "Направление подготовки студента" },
@@ -104,6 +110,13 @@ export default{
         { ФИО: "Агафонова Виктория", Группа: "НИ-101", Направление_подготовки: "Направление подготовки студента" },
       ],
       selected: ' '
+    }
+  },
+  filters: {
+    capitalize: function (value) {
+      if (!value) return ' '
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
     }
   },
   methods:{
@@ -137,6 +150,15 @@ export default{
         alert(this.errors);
       }
 
+    },
+    async sortCompare(student, items){
+      const a = student;
+      const b = items[0].ФИО;
+      if (a == b) {
+          console.log(JSON.stringify(items[0]));
+      } else {
+          console.log('Ginger');
+      }
     },
   },
   computed: {
