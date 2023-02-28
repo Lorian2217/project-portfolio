@@ -13,10 +13,10 @@
         <b-form-input id="input-horizontal" placeholder="Кафедра" v-model="cafedra"></b-form-input>
       </b-form-group>
         <div class="workzone_button">
-          <b-col lg="0"> <b-button variant="outline-primary" @click="sortCompare(student, items)">Найти</b-button> </b-col>
+          <b-col lg="0"> <b-button variant="outline-primary" @click="search">Найти</b-button> </b-col>
           <b-col lg="1"> <b-button variant="outline-info" @click="reset">Сбросить</b-button> </b-col>
         </div>
-          Value: {{ student | capitalize}} {{ group }} {{ cafedra }} {{ selected }}
+          Value: {{ student }} {{ group }} {{ cafedra }} {{ selected }}
     </div>
       <div class="workingpart">
         <div class="studentList">
@@ -29,9 +29,8 @@
           ></b-pagination>
 
           <b-table
-          responsive
           id="my-table"
-          :items="items"
+          :items="filteredItems"
           :fields="fields"
           :per-page="perPage"
           :current-page="currentPage"
@@ -46,27 +45,6 @@
 
         </div>
       </div>
-<!-- <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta necessitatibus similique magni perspiciatis minus voluptatum placeat doloribus assumenda quae culpa excepturi aspernatur ab molestiae a, dolorum adipisci fugiat aperiam laborum.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, cumque autem magnam repellat rem ratione soluta nihil laborum dolore quisquam neque velit fugit iste aspernatur blanditiis accusantium voluptate facilis dolor.
-</p> -->
     <!-- Конец вёрстки, ниже изменять ничего нельзя -->
   </div>
 </template>
@@ -74,6 +52,7 @@
 <script>
 
 import { BButton, BTable, VBToggle, BFormInput, BFormGroup, BCol, BPagination } from 'bootstrap-vue'
+// import {itoc} from "core-js/internals/base64-map";
 
 export default{
   name: "ListStudent",
@@ -81,18 +60,13 @@ export default{
   directives: { 'b-toggle': VBToggle },
   data(){
     return{
-      student: null,
-      group: null,
-      cafedra: null,
+      student: "",
+      group: "",
+      cafedra: "",
       errors: null,
       perPage: 7,
       currentPage: 1,
-      fields: [
-        { key: 'ФИО', sortable: true },
-        { key: 'Группа', sortable: true },
-        { key: 'Направление_подготовки', sortable: true },
-        { key: 'Портфолио', sortable: true },
-      ],
+      fields: [ 'ФИО', 'Группа', 'Направление_подготовки', 'Портфолио' ],
       items: [
         { ФИО: "Новичков Максим", Группа: "МИ-101", Направление_подготовки: "Направление подготовки студента" },
         { ФИО: "Святов Димитрий", Группа: "МИ-101", Направление_подготовки: "Направление подготовки студента" },
@@ -109,32 +83,29 @@ export default{
         { ФИО: "Мохнаткин Данила", Группа: "МИ-101", Направление_подготовки: "Направление подготовки студента" },
         { ФИО: "Агафонова Виктория", Группа: "НИ-101", Направление_подготовки: "Направление подготовки студента" },
       ],
+      filteredItems: [],
       selected: ' '
-    }
-  },
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ' '
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
     }
   },
   methods:{
     async search () {
-      try{
-        const result = this.student + ' ' + this.group + ' ' + this.cafedra;
-        alert(result);
-      } catch(error) {
-        var a = this.errors = error.response.data;
-        alert(a);
-      }
-
+      // try{
+      //   const result = this.student + ' ' + this.group + ' ' + this.cafedra;
+      //   alert(result);
+      // } catch(error) {
+      //   var a = this.errors = error.response.data;
+      //   alert(a);
+      // }
+      this.filteredItems = this.items.filter(item => {
+        return (!item.ФИО || item.ФИО.includes(this.student)) && (!item.Группа || item.Группа.includes(this.group)) && (!item.Направление_подготовки || item.Направление_подготовки.includes(this.cafedra))
+      })
     },
     async reset () {
       try{
-        this.student = null,
-        this.group = null,
-        this.cafedra = null,
+        this.student = ""
+        this.group = ""
+        this.cafedra = ""
+        this.filteredItems = this.items
         this.selected = null
       } catch(error) {
         var a = this.errors = error.response.data;
@@ -151,20 +122,14 @@ export default{
       }
 
     },
-    async sortCompare(student, items){
-      const a = student;
-      const b = items[0].ФИО;
-      if (a == b) {
-          console.log(JSON.stringify(items[0]));
-      } else {
-          console.log('Ginger');
-      }
-    },
   },
   computed: {
     rows() {
-        return this.items.length
+        return this.filteredItems.length
       }
+  },
+  mounted() {
+    this.filteredItems = this.items
   }
 }
 </script>
