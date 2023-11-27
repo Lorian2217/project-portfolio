@@ -2,39 +2,29 @@
   <div>
     <!-- Начало вёрстки, выше изменять ничего нельзя -->
     <div>
-      <b-navbar toggleable="lg" type="dark" variant="primary">
-        <b-navbar-brand :to="{ name: 'home' }">NavBar</b-navbar-brand>
+      <b-navbar toggleable="lg" type="light" variant="light">
+        <b-navbar-brand :to="{ name: 'home' }" class="ml-2">
+          <b-img-lazy :src=" require('../assets/img/logo.svg') "></b-img-lazy>
+        </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-
-            <b-nav-item :to="{ name: 'second' }">Link</b-nav-item>
-            <b-nav-item href="#" disabled>Disabled</b-nav-item>
-              <span v-if="isTeacher">
-                <b-nav-item :to="{ name: 'spisok' }">Студенты</b-nav-item>
-              </span>
-
+            <b-nav-item :to="{ name: 'test' }">Link</b-nav-item>
+            <b-nav-item href="#">Disabled</b-nav-item>
           </b-navbar-nav>
 
+          <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-
             <b-nav-item-dropdown right>
-            <!-- Using 'button-content' slot -->
+              <!-- Using 'button-content' slot -->
               <template #button-content>
-                <em>Личный кабинет</em>
+                <em>User</em>
               </template>
-              <span v-if="isLoggedIn">
-                  <b-dropdown-item :to="{ name: 'personal-cabinet' }">Профиль</b-dropdown-item>
-                  <b-dropdown-item @click="logout">Выйти</b-dropdown-item>
-              </span>
-              <span v-else>
-                  <b-dropdown-item :to="{ name: 'authorization' }">Авторизация</b-dropdown-item>
-                  <b-dropdown-item :to="{ name: 'home' }">Регистрация</b-dropdown-item>
-              </span>
+              <b-dropdown-item href="#">Profile</b-dropdown-item>
+              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
-
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -44,18 +34,16 @@
 </template>
 
 
-
 <style scoped>
 </style>
 
 
 <script>
-
-import { BNavbar, BCollapse, BNavbarNav, BNavItem, BNavbarToggle, BNavItemDropdown, BDropdownItem, BNavbarBrand } from 'bootstrap-vue'
+import { BNavbar, BCollapse, BNavbarNav, BNavItem, BNavbarToggle, BNavbarBrand, BDropdownItem, BNavItemDropdown, BImgLazy } from 'bootstrap-vue'
 
 export default{
   name: "HeaderContent",
-  components: { BNavbar, BCollapse, BNavbarNav, BNavItem, BNavbarToggle, BNavItemDropdown, BDropdownItem, BNavbarBrand },
+  components: { BNavbar, BCollapse, BNavbarNav, BNavItem, BNavbarToggle, BNavbarBrand, BDropdownItem, BNavItemDropdown, BImgLazy },
   computed: {
     isLoggedIn : function(){ return this.$store.getters.isAuthenticated},
     isTeacher : function(){ return this.$store.getters.isTeacher }
@@ -68,6 +56,5 @@ export default{
   }
 }
 
-// BFormInput, BButton, BNavForm,
 </script>
 

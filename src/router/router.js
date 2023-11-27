@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
-import HomeView from '../views/HomeView.vue'
-import pMain from '../components/ExampleMain.vue'
-import pAuth from '../components/Authorization.vue'
-import pSpisok from '../components/spisok.vue'
-import sProfile from '../components/Profile.vue'
+import Main from '../components/Main.vue'
+import Test from '../components/HelloWorld.vue'
+
 
 Vue.use(VueRouter)
 
@@ -13,24 +11,19 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: pMain
+    component: Main
   },
   {
-    path: '/second',
-    name: 'second',
-    component: HomeView
+    path: '/test',
+    name: 'test',
+    component: Test
   },
-  {
-    path: '/spisok',
-    name: 'spisok',
-    component: pSpisok,
-    meta: {requiresAuth: true},
-  },
-  {
-    path: '/personal-cabinet',
-    name: 'personal-cabinet',
-    component: sProfile
-  },
+  // {
+  //   path: '/spisok',
+  //   name: 'spisok',
+  //   component: pSpisok,
+  //   meta: {requiresAuth: true},
+  // },
   {
     path: '/about',
     name: 'about',
@@ -39,11 +32,6 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
-  {
-    path: '/auth',
-    name: 'authorization',
-    component: pAuth
-  }
 ]
 
 const router = new VueRouter({
