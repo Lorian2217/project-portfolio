@@ -1,4 +1,7 @@
 html, body{ padding: 0; margin: 0; }
+:root{
+    --cardheight: 10em;
+}
 
 .navbar-nav{ align-items: center; }
 .navbar-brand img{ max-width: 100%; width: 7rem; }
@@ -75,3 +78,5 @@ html, body{ padding: 0; margin: 0; }
 }
 }
 /* Конец стилизации волн на главной странице */
+
+.about-front{ height: var(--cardheight); padding: 3em 0; }

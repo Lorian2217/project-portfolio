@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- Начало вёрстки, выше изменять ничего нельзя -->
+    <!-- Start page -->
     <div>
       <b-navbar toggleable="lg" type="light" variant="light">
         <b-navbar-brand :to="{ name: 'home' }" class="ml-2">
@@ -11,8 +11,8 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
+            <b-nav-item :to="{ name: 'o-nas' }">О нас</b-nav-item>
             <b-nav-item :to="{ name: 'test' }">Link</b-nav-item>
-            <b-nav-item href="#">Disabled</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -29,7 +29,7 @@
         </b-collapse>
       </b-navbar>
     </div>
-    <!-- Конец вёрстки, ниже изменять ничего нельзя -->
+    <!-- End page -->
   </div>
 </template>
 

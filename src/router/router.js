@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
 import Main from '../components/Main.vue'
+import About from '../components/About.vue'
 import Test from '../components/HelloWorld.vue'
 
 
@@ -17,6 +18,11 @@ const routes = [
     path: '/test',
     name: 'test',
     component: Test
+  },
+  {
+    path: '/o-nas',
+    name: 'o-nas',
+    component: About
   },
   // {
   //   path: '/spisok',
