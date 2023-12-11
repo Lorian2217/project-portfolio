@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import store from '../store'
 import Main from '../components/Main.vue'
 import About from '../components/About.vue'
+import UserList from '../components/UserList.vue'
 import Test from '../components/HelloWorld.vue'
 
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/o-nas',
     name: 'o-nas',
     component: About
+  },
+  {
+    path: '/users ',
+    name: 'users',
+    component: UserList
   },
   // {
   //   path: '/spisok',

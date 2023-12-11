@@ -12,6 +12,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item :to="{ name: 'o-nas' }">О нас</b-nav-item>
+            <b-nav-item :to="{ name: 'users' }">Список пользователей</b-nav-item>
             <b-nav-item :to="{ name: 'test' }">Link</b-nav-item>
           </b-navbar-nav>
 
